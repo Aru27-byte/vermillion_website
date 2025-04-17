@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/vermillion_website/static/css/main.dd71baee.css",
+    "main.css": "/vermillion_website/static/css/main.0abef9b4.css",
     "main.js": "/vermillion_website/static/js/main.46be14e4.js",
     "static/js/453.2d31860e.chunk.js": "/vermillion_website/static/js/453.2d31860e.chunk.js",
     "index.html": "/vermillion_website/index.html",
-    "main.dd71baee.css.map": "/vermillion_website/static/css/main.dd71baee.css.map",
+    "main.0abef9b4.css.map": "/vermillion_website/static/css/main.0abef9b4.css.map",
     "main.46be14e4.js.map": "/vermillion_website/static/js/main.46be14e4.js.map",
     "453.2d31860e.chunk.js.map": "/vermillion_website/static/js/453.2d31860e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dd71baee.css",
+    "static/css/main.0abef9b4.css",
     "static/js/main.46be14e4.js"
   ]
 }

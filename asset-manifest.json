@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.f855e6bc.css",
-    "main.js": "/static/js/main.134c2c07.js",
-    "static/js/453.2d31860e.chunk.js": "/static/js/453.2d31860e.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.f855e6bc.css.map": "/static/css/main.f855e6bc.css.map",
-    "main.134c2c07.js.map": "/static/js/main.134c2c07.js.map",
-    "453.2d31860e.chunk.js.map": "/static/js/453.2d31860e.chunk.js.map"
+    "main.css": "/vermillion_website/static/css/main.f855e6bc.css",
+    "main.js": "/vermillion_website/static/js/main.5b88168f.js",
+    "static/js/453.2d31860e.chunk.js": "/vermillion_website/static/js/453.2d31860e.chunk.js",
+    "static/media/logo.svg": "/vermillion_website/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/vermillion_website/index.html",
+    "main.f855e6bc.css.map": "/vermillion_website/static/css/main.f855e6bc.css.map",
+    "main.5b88168f.js.map": "/vermillion_website/static/js/main.5b88168f.js.map",
+    "453.2d31860e.chunk.js.map": "/vermillion_website/static/js/453.2d31860e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.134c2c07.js"
+    "static/js/main.5b88168f.js"
   ]
 }

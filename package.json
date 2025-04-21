@@ -42,5 +42,5 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   },
-  "homepage": "https://aru27-byte.github.io/vermillion_website"
+  "homepage": "/vermillion_website"
 }

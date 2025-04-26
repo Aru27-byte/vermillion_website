@@ -512,7 +512,7 @@ function App() {
                 <a href="https://www.linkedin.com/company/the-vermillion" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                   <Linkedin className="h-6 w-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="https://github.com/Aru27-byte/vermillion_website/wiki/How-to-Be-a-Coder-(Even-If-You%E2%80%99re-Not-One)-%E2%80%94-With-AI!" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                   <Github className="h-6 w-6" />
                 </a>
               </div>

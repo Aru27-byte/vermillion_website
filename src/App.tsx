@@ -68,7 +68,7 @@ function App() {
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
               <Star className="h-8 w-8 text-emerald-500" />
-              <span className="ml-2 text-xl font-bold text-white">ProductSense</span>
+              <span className="ml-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500">ProductSense</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#how-it-works" className="text-gray-400 hover:text-white">How It Works</a>

@@ -9,9 +9,11 @@ interface FormData {
 
 function App() {
   const [showPitchModal, setShowPitchModal] = React.useState(false);
+  // Demo modal state is kept but won't be used as we're using hover instead
   const [showDemoModal, setShowDemoModal] = React.useState(false);
   const [showVideoModal, setShowVideoModal] = React.useState(false);
   const [showContactInfo, setShowContactInfo] = React.useState(false);
+  const [showDemoInfo, setShowDemoInfo] = React.useState(false); // Added state for demo info hover
   const [showAboutInfo, setShowAboutInfo] = React.useState(false);
   const [showPrivacyInfo, setShowPrivacyInfo] = React.useState(false);
   const [showTermsInfo, setShowTermsInfo] = React.useState(false);
@@ -57,11 +59,39 @@ function App() {
     }
 
     try {
-      // Here you would typically send the data to your backend
-      // For now, we'll simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Here we'll send the data to a backend or email service
+      // For now, we'll simulate the backend call
       
-      // In a real implementation, you would send an email to aroy@the-vermillion.com here
+      // Check if this is a demo request (vs pitch deck request)
+      const isDemoRequest = showDemoModal;
+
+      // Construct the email to be sent
+      const emailData = {
+        to: 'aroy@the-vermillion.com',
+        subject: isDemoRequest 
+          ? `Request A Demo from ${formData.email}`
+          : `Pitch Deck Request from ${formData.email}`,
+        body: isDemoRequest
+          ? `${formData.name} with email ${formData.email} is requesting a demo. Please reach out.`
+          : `${formData.name} from ${formData.companyName || 'N/A'} with email ${formData.email} is requesting the pitch deck.`
+      };
+      
+      // In a production environment, you would send this data to your backend API
+      // which would handle the actual email sending
+      console.log('Sending email:', emailData);
+      
+      // Simulate API call
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailData),
+      }).catch(err => {
+        // This will fail in development since there's no endpoint
+        // but we'll show success anyway for demonstration
+        console.log('Email would be sent in production');
+      });
       
       setShowSuccess(true);
       setFormData({ name: '', email: '' });
@@ -115,12 +145,27 @@ function App() {
                 <Play className="mr-2 h-5 w-5" />
                 Watch Video
               </button>
-              <button 
-                onClick={() => setShowDemoModal(true)}
-                className="border-2 border-emerald-500 text-emerald-500 px-8 py-4 rounded-full hover:bg-emerald-500 hover:text-black transition-colors"
+              <div 
+                onMouseEnter={() => setShowDemoInfo(true)}
+                onMouseLeave={() => setShowDemoInfo(false)}
+                className="relative"
               >
-                Request A Demo
-              </button>
+                <button 
+                  className="border-2 border-emerald-500 text-emerald-500 px-8 py-4 rounded-full hover:bg-emerald-500 hover:text-black transition-colors"
+                >
+                  Request A Demo
+                </button>
+                {showDemoInfo && (
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-gray-900 rounded-lg shadow-xl border border-gray-800 p-4 min-w-[280px] max-w-[320px] backdrop-blur-md bg-opacity-95 z-30">
+                    <div className="flex items-center gap-1">
+                      <Mail className="h-5 w-5 text-emerald-400 flex-shrink-0" />
+                      <p className="text-gray-200 text-sm leading-snug">
+                        Please send an email to <span className="text-emerald-400 font-medium whitespace-nowrap">info@the-vermillion.com</span> for requesting a product demo. Thanks for reaching out.
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

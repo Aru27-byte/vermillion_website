@@ -12,6 +12,7 @@ function App() {
   const [showContactInfo, setShowContactInfo] = React.useState(false);
   const [showAboutInfo, setShowAboutInfo] = React.useState(false);
   const [showPrivacyInfo, setShowPrivacyInfo] = React.useState(false);
+  const [showTermsInfo, setShowTermsInfo] = React.useState(false);
   const [formData, setFormData] = React.useState<FormData>({
     name: '',
     email: ''
@@ -528,7 +529,28 @@ function App() {
                     </div>
                   )}
                 </li>
-                <li><a href="#" className="text-gray-400 hover:text-white">Terms of Service</a></li>
+                <li className="relative">
+                  <button
+                    onMouseEnter={() => setShowTermsInfo(true)}
+                    onMouseLeave={() => setShowTermsInfo(false)}
+                    className="text-gray-400 hover:text-white"
+                  >
+                    Terms of Service
+                  </button>
+                  {showTermsInfo && (
+                    <div className="absolute bottom-full left-0 mb-2 bg-gray-900 rounded-lg shadow-xl border border-gray-800 p-8 w-[600px]">
+                      <button
+                        onClick={() => setShowTermsInfo(false)}
+                        className="absolute top-3 right-3 text-gray-400 hover:text-white"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                      <p className="text-gray-300 leading-relaxed text-lg text-justify">
+                        By using our feedback review app ("Service"), you agree to these Terms. You must be 18 or older to use the Service. All feedback submitted remains your responsibility; you grant us a non-exclusive license to use, display, and distribute it for product improvement purposes. We do not guarantee the accuracy, reliability, or availability of the Service. We may suspend or terminate accounts at our discretion. Your data is handled according to our Privacy Policy. By continuing, you accept any updates to these Terms. Governing law is the jurisdiction where the company is registered.
+                      </p>
+                    </div>
+                  )}
+                </li>
               </ul>
             </div>
             <div>

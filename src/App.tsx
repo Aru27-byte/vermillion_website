@@ -1,14 +1,16 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2, Star, Users, LineChart, Lightbulb, ChevronDown, Github, Linkedin, X, Mail, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Star, Users, LineChart, Lightbulb, ChevronDown, Github, Linkedin, X, Mail, MapPin, Play } from 'lucide-react';
 
 interface FormData {
   name: string;
   email: string;
+  companyName?: string;
 }
 
 function App() {
   const [showPitchModal, setShowPitchModal] = React.useState(false);
   const [showDemoModal, setShowDemoModal] = React.useState(false);
+  const [showVideoModal, setShowVideoModal] = React.useState(false);
   const [showContactInfo, setShowContactInfo] = React.useState(false);
   const [showAboutInfo, setShowAboutInfo] = React.useState(false);
   const [showPrivacyInfo, setShowPrivacyInfo] = React.useState(false);
@@ -19,6 +21,19 @@ function App() {
   });
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [error, setError] = React.useState<string>('');
+
+  // YouTube video handler
+  const openVideoModal = () => {
+    setShowVideoModal(true);
+    // When modal is opened, add class to body to prevent scrolling
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeVideoModal = () => {
+    setShowVideoModal(false);
+    // Re-enable scrolling when modal is closed
+    document.body.style.overflow = 'auto';
+  };
 
   const validateEmail = (email: string) => {
     // Basic company email validation - checks for @ and . after @
@@ -76,12 +91,6 @@ function App() {
               <a href="#how-it-works" className="text-gray-400 hover:text-white">How It Works</a>
               <a href="#benefits" className="text-gray-400 hover:text-white">Benefits</a>
               <a href="#investors" className="text-gray-400 hover:text-white">Investors</a>
-              <button 
-                onClick={() => setShowDemoModal(true)}
-                className="bg-emerald-600 text-white px-6 py-2 rounded-full hover:bg-emerald-500 transition-colors"
-              >
-                Request a demo
-              </button>
             </div>
           </div>
         </div>
@@ -99,15 +108,21 @@ function App() {
               and brands gain valuable insights to innovate and connect better.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="bg-emerald-600 text-white px-8 py-4 rounded-full hover:bg-emerald-500 transition-colors flex items-center justify-center">
-                Join the Community
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <button 
+                onClick={openVideoModal}
+                className="bg-gradient-to-r from-pink-600 to-purple-600 text-white px-8 py-4 rounded-full hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500 transition-all transform hover:scale-105 shadow-lg hover:shadow-pink-500/25 flex items-center justify-center"
+              >
+                <Play className="mr-2 h-5 w-5" />
+                Watch Video
               </button>
-              <button className="border-2 border-emerald-500 text-emerald-500 px-8 py-4 rounded-full hover:bg-emerald-500 hover:text-black transition-colors">
-                For Brands
+              <button 
+                onClick={() => setShowDemoModal(true)}
+                className="border-2 border-emerald-500 text-emerald-500 px-8 py-4 rounded-full hover:bg-emerald-500 hover:text-black transition-colors"
+              >
+                Request A Demo
               </button>
             </div>
-            </div>
+          </div>
         </div>
       </section>
 
@@ -399,6 +414,31 @@ function App() {
                   </button>
                 </form>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* Video Modal */}
+        {showVideoModal && (
+          <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50" onClick={closeVideoModal}>
+            <div 
+              className="relative bg-black rounded-xl overflow-hidden max-w-5xl w-full aspect-video shadow-2xl"
+              onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking inside
+            >
+              <button
+                onClick={closeVideoModal}
+                className="absolute top-4 right-4 z-10 bg-black/60 text-white p-2 rounded-full hover:bg-black/80"
+                aria-label="Close video"
+              >
+                <X className="h-5 w-5" />
+              </button>
+              <iframe 
+                src="https://www.youtube.com/embed/tXKJ3kHRLtg?autoplay=1" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+                className="w-full h-full"
+                title="ProductSense Video"
+              ></iframe>
             </div>
           </div>
         )}

@@ -11,6 +11,7 @@ function App() {
   const [showDemoModal, setShowDemoModal] = React.useState(false);
   const [showContactInfo, setShowContactInfo] = React.useState(false);
   const [showAboutInfo, setShowAboutInfo] = React.useState(false);
+  const [showPrivacyInfo, setShowPrivacyInfo] = React.useState(false);
   const [formData, setFormData] = React.useState<FormData>({
     name: '',
     email: ''
@@ -105,7 +106,7 @@ function App() {
                 For Brands
               </button>
             </div>
-          </div>
+            </div>
         </div>
       </section>
 
@@ -470,7 +471,8 @@ function App() {
                 </li>
                 <li className="relative">
                   <button
-                    onClick={() => setShowContactInfo(!showContactInfo)}
+                    onMouseEnter={() => setShowContactInfo(true)}
+                    onMouseLeave={() => setShowContactInfo(false)}
                     className="text-gray-400 hover:text-white"
                   >
                     Contact Us
@@ -502,7 +504,30 @@ function App() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                <li className="relative">
+                  <button
+                    onMouseEnter={() => setShowPrivacyInfo(true)}
+                    onMouseLeave={() => setShowPrivacyInfo(false)}
+                    className="text-gray-400 hover:text-white"
+                  >
+                    Privacy Policy
+                  </button>
+                  {showPrivacyInfo && (
+                    <div className="absolute bottom-full left-0 mb-2 bg-gray-900 rounded-lg shadow-xl border border-gray-800 p-8 w-[600px]">
+                      <button
+                        onClick={() => setShowPrivacyInfo(false)}
+                        className="absolute top-3 right-3 text-gray-400 hover:text-white"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                      <p className="text-gray-300 leading-relaxed text-lg text-justify">
+                      We respect your privacy. By using our app ("Service"), you consent to the collection of basic information such as your name, email, and feedback content. We use this data solely to operate, improve, and support the Service. We do not sell or share your information with third parties without consent, except as required by law. Data is stored securely, but no method is 100% secure. You may request data deletion by contacting us. By continuing, you agree to this policy. Updates may occur, and your continued use signifies acceptance. Jurisdiction is the country where our company is based.
+
+
+                      </p>
+                    </div>
+                  )}
+                </li>
                 <li><a href="#" className="text-gray-400 hover:text-white">Terms of Service</a></li>
               </ul>
             </div>

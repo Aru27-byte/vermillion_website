@@ -73,7 +73,7 @@ function App() {
           : `Pitch Deck Request from ${formData.email}`,
         body: isDemoRequest
           ? `${formData.name} with email ${formData.email} is requesting a demo. Please reach out.`
-          : `${formData.name} from ${formData.companyName || 'N/A'} with email ${formData.email} is requesting the pitch deck.`
+          : `${formData.name} from ${formData.companyName || 'N/A'} with email ${formData.email} is requesting the pitch deck. Please reach out.`
       };
       
       // In a production environment, you would send this data to your backend API
@@ -340,7 +340,44 @@ function App() {
                   <p>Thank you! We'll send the pitch deck to your email shortly.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form 
+                  action="https://formsubmit.co/aroy@the-vermillion.com" 
+                  method="POST"
+                  className="space-y-6"
+                  onSubmit={(e) => {
+                    // Client-side validation before submission
+                    if (!formData.name || !formData.email) {
+                      e.preventDefault();
+                      setError('All fields are required');
+                      return;
+                    }
+
+                    if (!validateEmail(formData.email)) {
+                      e.preventDefault();
+                      setError('Please use a valid company email address');
+                      return;
+                    }
+                    
+                    // If validation passes, form will submit normally
+                    // Show success message after a delay to simulate the form submission
+                    setTimeout(() => {
+                      setShowSuccess(true);
+                      setFormData({ name: '', email: '' });
+                      
+                      // Hide success message and modal after 3 seconds
+                      setTimeout(() => {
+                        setShowSuccess(false);
+                        setShowPitchModal(false);
+                      }, 3000);
+                    }, 500);
+                  }}
+                >
+                  {/* Hidden fields for FormSubmit configuration */}
+                  <input type="hidden" name="_subject" value="Pitch Deck Request" />
+                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_next" value="https://www.the-vermillion.com" />
+                  
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
                       Name
@@ -348,6 +385,8 @@ function App() {
                     <input
                       type="text"
                       id="name"
+                      name="name"
+                      required
                       value={formData.name}
                       onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                       className="w-full bg-black border border-gray-800 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
@@ -362,6 +401,7 @@ function App() {
                     <input
                       type="text"
                       id="companyName"
+                      name="companyName"
                       value={formData.companyName}
                       onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
                       className="w-full bg-black border border-gray-800 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
@@ -376,6 +416,8 @@ function App() {
                     <input
                       type="email"
                       id="email"
+                      name="email"
+                      required
                       value={formData.email}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       className="w-full bg-black border border-gray-800 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"

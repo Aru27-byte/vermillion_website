@@ -9,7 +9,7 @@ interface FormData {
 
 function App() {
   const [showPitchModal, setShowPitchModal] = React.useState(false);
-  // Demo modal state is kept but won't be used as we're using hover instead
+  // Demo modal state is kept but won't be used as we're using hover instead.
   const [showDemoModal, setShowDemoModal] = React.useState(false);
   const [showVideoModal, setShowVideoModal] = React.useState(false);
   const [showContactInfo, setShowContactInfo] = React.useState(false);
@@ -520,7 +520,7 @@ function App() {
                 <X className="h-5 w-5" />
               </button>
               <iframe 
-                src="https://www.youtube.com/watch?v=6kpG58ulxzo&autoplay=1" 
+                src="https://youtube.com/embed/6kpG58ulxzo?autoplay=1" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
                 className="w-full h-full"

@@ -9,7 +9,7 @@ interface FormData {
 
 function App() {
   const [showPitchModal, setShowPitchModal] = React.useState(false);
-  // Demo modal state is kept but won't be used as we're using hover instead
+  // Demo modal state is kept but won't be used as we're using hover instead.
   const [showDemoModal, setShowDemoModal] = React.useState(false);
   const [showVideoModal, setShowVideoModal] = React.useState(false);
   const [showContactInfo, setShowContactInfo] = React.useState(false);

@@ -520,7 +520,7 @@ function App() {
                 <X className="h-5 w-5" />
               </button>
               <iframe 
-                src="https://youtu.be/6kpG58ulxzo?autoplay=1" 
+                src="https://www.youtube.com/watch?v=6kpG58ulxzo&autoplay=1" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
                 className="w-full h-full"
